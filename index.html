@@ -6,9 +6,43 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+        <link rel="icon" href="assets/images/icons/rinoparking-icon.ico">
+        <link rel="stylesheet" href="assets/styles/normalize.css">
         <link rel="stylesheet" href="assets/styles/styles.css">
     </head>
     <body>
-        <h1>Rinoparking</h1>
+        <header class="header">
+            <img class="rinoparking-logo" src="assets/images/rinoparking-logo.png" alt="">
+        </header>
+        <main class="main">
+            <h1 class="title">Rinoparking</h1>
+            <div class="card">
+                <form class="login-form">
+                    <input class="login-form__control-number" id="control-number" name="control-number" type="text" minlength="" maxlength="9" placeholder="Número de control" required>
+                    <label for="control-number" hidden>Número de control</label>
+                    <input class="login-form__password" id="password" name="password" type="password" minlength="8" maxlength="16" placeholder="Contraseña" required>
+                    <label for="password" hidden>Contraseña</label>
+                    <button class="button button--green" type="submit">Iniciar sesión</button>
+                </form>
+                <a class="text text--link" href="">¿Olvidaste tu contraseña?</a>
+                <button class="button" type="button">Registrarse</button>
+            </div>
+        </main>
+        <footer class="footer">
+            <h2 class="subtitle">Ayuda</h2>
+            <p class="text">
+                ¿Tienes dudas o requieres atención especializada? Comunícate con nosotros.
+            </p>
+            <p class="text text--center">
+                Correo electrónico:<br>
+                rinoparking.ayuda@tesci.mx<br>
+                Teléfonos:<br>
+                5570801009<br>
+                5547832018
+            </p>
+            <p class="text text--bold text--big">
+                Tecnológico de Estudios Superiores de Cuautitlán Izcalli
+            </p>
+        </footer>
     </body>
 </html>
