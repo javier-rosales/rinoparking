@@ -9,26 +9,28 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-        <link rel="icon" href="assets/images/icons/rinoparking-icon.ico">
-        <link rel="stylesheet" href="assets/styles/normalize.css">
-        <link rel="stylesheet" href="assets/styles/styles.css">
+        <link rel="icon" href="../../images/icons/rinoparking-icon.ico">
+        <link rel="stylesheet" href="../../styles/normalize.css">
+        <link rel="stylesheet" href="../../styles/styles.css">
     </head>
     <body>
         <header class="header">
-            <img class="rinoparking-logo" src="assets/images/rinoparking-logo.png" alt="">
+            <img class="rinoparking-logo" src="../../images/rinoparking-logo.png" alt="">
         </header>
         <main class="main">
             <h1 class="title-1">Rinoparking</h1>
+            <h2 class="title-2">Recuperar contraseña</h2>
             <div class="card">
-                <form class="login-form">
+                <form class="recover-password-form">
                     <label for="control-number" hidden>Número de control</label>
-                    <input class="login-form__control-number" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" required>
-                    <label for="password" hidden>Contraseña</label>
-                    <input class="login-form__password" type="password" id="password" name="password" minlength="8" maxlength="16" placeholder="Contraseña" required>
-                    <button class="button button--green" type="submit" formaction="">Iniciar sesión</button>
+                    <input class="recover-password-form__control-number" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" required>
+                    <label for="name" hidden>Nombre</label>
+                    <input class="recover-password-form__name" type="text" id="name" name="name" minlength="3" maxlength="30" placeholder="Nombre(s)" required>
+                    <label for="first-last-name" hidden>Apellido paterno</label>
+                    <input class="recover-password-form__first-last-name" type="text" id="first-last-name" name="first-last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required>
+                    <button class="button button--green" type="submit" formaction="validated.html">Confirmar</button>
                 </form>
-                <a class="text text--link" href="assets/webpages/recover-password/request.html">¿Olvidaste tu contraseña?</a>
-                <button class="button" type="button"><a href="assets/webpages/new-account.html">Crear nueva cuenta</a></button>
+                <button class="button" type="button"><a href="../../../index.html">Cancelar</a></button>
             </div>
         </main>
         <footer class="footer">
