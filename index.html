@@ -2,6 +2,9 @@
 <html lang="es">
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Sistema de registro y acceso al estacionamiento de Tecnológico de Estudios Superiores de Cuautitlán Izcalli.">
         <title>Rinoparking | Inicio</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,21 +18,21 @@
             <img class="rinoparking-logo" src="assets/images/rinoparking-logo.png" alt="">
         </header>
         <main class="main">
-            <h1 class="title">Rinoparking</h1>
+            <h1 class="title-1">Rinoparking</h1>
             <div class="card">
                 <form class="login-form">
-                    <input class="login-form__control-number" id="control-number" name="control-number" type="text" minlength="" maxlength="9" placeholder="Número de control" required>
                     <label for="control-number" hidden>Número de control</label>
-                    <input class="login-form__password" id="password" name="password" type="password" minlength="8" maxlength="16" placeholder="Contraseña" required>
+                    <input class="login-form__control-number" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" required>
                     <label for="password" hidden>Contraseña</label>
+                    <input class="login-form__password" type="password" id="password" name="password" minlength="8" maxlength="16" placeholder="Contraseña" required>
                     <button class="button button--green" type="submit">Iniciar sesión</button>
                 </form>
                 <a class="text text--link" href="">¿Olvidaste tu contraseña?</a>
-                <button class="button" type="button">Registrarse</button>
+                <button class="button" type="button"><a href="assets/webpages/new-account.html">Crear nueva cuenta</a></button>
             </div>
         </main>
         <footer class="footer">
-            <h2 class="subtitle">Ayuda</h2>
+            <h3 class="title-3">Ayuda</h3>
             <p class="text">
                 ¿Tienes dudas o requieres atención especializada? Comunícate con nosotros.
             </p>
