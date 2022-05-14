@@ -21,23 +21,23 @@
         <main class="main">
             <h2 class="title-2">Modificar solicitud</h2>
             <div class="card">
-                <form class="modify-account-request-form">
+                <form class="form">
                     <label for="name" hidden>Nombre</label>
-                    <input class="modify-account-request-form__name" type="text" id="name" name="name" minlength="3" maxlength="30" placeholder="Nombre(s)" required value="Francisco Javier">
+                    <input class="input-text" type="text" id="name" name="name" minlength="3" maxlength="30" placeholder="Nombre(s)" required value="Francisco Javier">
                     <label for="first-last-name" hidden>Apellido paterno</label>
-                    <input class="modify-account-request-form__first-last-name" type="text" id="first-last-name" name="first-last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required value="Rosales">
+                    <input class="input-text" type="text" id="first-last-name" name="first-last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required value="Rosales">
                     <label for="second-last-name" hidden>Apellido materno</label>
-                    <input class="modify-account-request-form__second-last-name" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno" required value="Benítez">
+                    <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno" required value="Benítez">
                     <label for="student-credential" class="text text--form-label">Credencial de estudiante (PDF)</label>
-                    <input class="modify-account-request-form__student-credential" type="file" id="student-credential" name="student-credential" accept="application/pdf" required>
+                    <input class="input-file" type="file" id="student-credential" name="student-credential" accept="application/pdf" required>
                     <label for="academic-program" class="text text--form-label">Carga académica (PDF)</label>
-                    <input class="modify-account-request-form__academic-program" type="file" id="academic-program" name="academic-program" accept="application/pdf" required>
+                    <input class="input-file" type="file" id="academic-program" name="academic-program" accept="application/pdf" required>
                     <label for="drivers-license" class="text text--form-label">Licencia de conducir (PDF)</label>
-                    <input class="modify-account-request-form__drivers-license" type="file" id="drivers-license" name="drivers-license" accept="application/pdf" required>
+                    <input class="input-file" type="file" id="drivers-license" name="drivers-license" accept="application/pdf" required>
                     <label for="control-number" hidden>Número de control</label>
-                    <input class="modify-account-request-form__control-number" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" required value="183107081">
+                    <input class="input-text" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" required value="183107081">
                     <label for="password" hidden>Contraseña (8-16 caracteres)</label>
-                    <input class="modify-account-request-form__password" id="password" name="password" type="password" minlength="8" maxlength="16" placeholder="Contraseña (8-16 caracteres)" required value="rinoparking12345">
+                    <input class="input-text" id="password" name="password" type="password" minlength="8" maxlength="16" placeholder="Contraseña (8-16 caracteres)" required value="rinoparking12345">
                     <button class="button button--green" type="submit" formaction="../../../index.html">Confirmar</button>
                 </form>
                 <button class="button" type="button"><a href="../home/pending-account-confirmation.html">Cancelar</a></button>
