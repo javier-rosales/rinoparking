@@ -28,11 +28,11 @@
                     <input class="input-text" type="text" id="first-last-name" name="first-last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required value="Rosales">
                     <label for="second-last-name" hidden>Apellido materno</label>
                     <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno" required value="Benítez">
-                    <label for="student-credential" class="text text--form-label">Credencial de estudiante (PDF)</label>
+                    <label for="student-credential" class="input-file-label">Credencial de estudiante (PDF)</label>
                     <input class="input-file" type="file" id="student-credential" name="student-credential" accept="application/pdf" required>
-                    <label for="academic-program" class="text text--form-label">Carga académica (PDF)</label>
+                    <label for="academic-program" class="input-file-label">Carga académica (PDF)</label>
                     <input class="input-file" type="file" id="academic-program" name="academic-program" accept="application/pdf" required>
-                    <label for="drivers-license" class="text text--form-label">Licencia de conducir (PDF)</label>
+                    <label for="drivers-license" class="input-file-label">Licencia de conducir (PDF)</label>
                     <input class="input-file" type="file" id="drivers-license" name="drivers-license" accept="application/pdf" required>
                     <label for="control-number" hidden>Número de control</label>
                     <input class="input-text" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" required value="183107081">
@@ -40,7 +40,7 @@
                     <input class="input-text" id="password" name="password" type="password" minlength="8" maxlength="16" placeholder="Contraseña (8-16 caracteres)" required value="rinoparking12345">
                     <button class="button button--green" type="submit" formaction="../../../index.html">Confirmar</button>
                 </form>
-                <button class="button" type="button"><a href="../home/pending-account-confirmation.html">Cancelar</a></button>
+                <a class="button-link" href="../home/pending-account-confirmation.html">Cancelar</a>
             </div>
         </main>
         <footer class="footer">

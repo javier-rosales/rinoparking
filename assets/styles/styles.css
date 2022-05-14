@@ -1,3 +1,5 @@
+/* General */
+
 * {
     font-family: 'Roboto', sans-serif;
 }
@@ -15,72 +17,115 @@ body {
     justify-content: center;
     align-items: center;
     align-content: center;
-    column-gap: 1em;
+    column-gap: 1.2em;
     position: sticky;
     top: 0;
     background: rgb(54,69,87);
     background: radial-gradient(circle, rgba(54,69,87,1) 0%, rgba(11,12,16,1) 100%);
 }
 
+.main {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding: 2em 0;
+}
+
+.footer {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: #364557;
+    padding: 1em;
+}
+
+/* Images */
+
 .rinoparking-logo {
     width: 7rem;
     height: auto;
 }
 
-.main {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    align-content: flex-start;
-    padding: 2em 0;
-}
+/* Main components */
 
 .card {
-    padding: .5em;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    row-gap: 2em;
+    box-sizing: border-box;
+    padding: 1.5em .5em;
     width: 80%;
     background-color: #364557;
     border: none;
     border-radius: .5em;
 }
 
-.button {
-    padding: .5em 1em;
+.button, .button-link, .input-file-label {
+    padding: .8em 1.5em;
     border: none;
     border-radius: .5em;
-}
-
-.footer {
-    background-color: #364557;
-    padding: 1em;
-}
-
-.title-1 {
-    flex-basis: 100%;
-    margin: 0;
-    margin-bottom: .3em;
-    font-size: 2em;
-    font-weight: 700;
-    text-align: center;
-    color: #66fcf1;
-}
-
-.title-2 {
-    flex-basis: 100%;
-    margin: 0;
-    margin-bottom: 1em;
-    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #d6d7d8;
+    font-size: 1em;
     font-weight: 500;
-    text-align: center;
+    color: #0b0c10;
+}
+
+.button--green {
+    background-color: #45a29e;
     color: #fff;
 }
 
-.title-3 {
-    font-size: 1.2em;
-    font-weight: 500;
-    text-align: center;
-    color: #66fcf1;
+.button-link {
+    text-decoration: none;
 }
+
+.button-link--red {
+    background-color: #fc4445;
+    color: #fff;
+}
+
+/* Form */
+
+.form {
+    display:flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    row-gap: 1.5em;
+    width: 100%;
+}
+
+.input-text {
+    box-sizing: border-box;
+    width: 85%;
+    padding: .4em .5em;
+    border: none;
+    border-radius: .1em;
+    font-size: 1em;
+    color: #0b0c10;
+}
+
+.input-file {
+    display: none;
+}
+
+.input-file-label {
+    box-sizing: border-box;
+    width: 85%;
+    padding: .5em 1.5em;
+    text-align: center;
+}
+
+/* Text */
 
 .text {
     font-size: 1em;
@@ -99,4 +144,53 @@ body {
 
 .text--big {
     font-size: 1.1em;
+}
+
+.text--link:link {
+    color: #fff;
+}
+
+.text--link:visited {
+    color: #fff;
+}
+
+.text--link:hover {
+    color: #45a29e;
+}
+
+.text--link:active {
+    color: #66fcf1;
+}
+
+/* Text: Titles */
+
+.title-1 {
+    flex-basis: 100%;
+    margin: 0;
+    margin-bottom: .3em;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 700;
+    color: #66fcf1;
+}
+
+.title-2 {
+    margin: 0;
+    margin-bottom: 1em;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #fff;
+}
+
+.title-3 {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #66fcf1;
+}
+
+.title-4 {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #66fcf1;
 }
