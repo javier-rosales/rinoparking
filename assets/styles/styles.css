@@ -73,6 +73,7 @@ body {
     border-radius: .5em;
     cursor: pointer;
     background-color: #d6d7d8;
+    text-align: center;
     font-size: 1em;
     font-weight: 500;
     color: #0b0c10;
@@ -122,7 +123,6 @@ body {
     box-sizing: border-box;
     width: 85%;
     padding: .5em 1.5em;
-    text-align: center;
 }
 
 /* TEXT */
@@ -151,7 +151,7 @@ body {
 }
 
 .text--green {
-    color: #0f0;
+    color: #66fcf1;
 }
 
 .text--yellow {
@@ -184,7 +184,6 @@ body {
     flex-basis: 100%;
     margin: 0;
     margin-bottom: .3em;
-    text-align: center;
     font-size: 2em;
     font-weight: 700;
     color: #66fcf1;
