@@ -262,3 +262,9 @@ body {
         width: 55%;
     }
 }
+
+@media (min-width: 1920px) {
+    .card {
+        width: 25%;
+    }
+}
