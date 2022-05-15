@@ -197,6 +197,12 @@ body {
 
 /* RESPONSIVE */
 
+@media (min-width: 320px) {
+    .form {
+        row-gap: 1.7em;
+    }
+}
+
 @media (min-width: 375px) {
     .card {
         width: 80%;
@@ -230,6 +236,10 @@ body {
 }
 
 @media (min-width: 768px) {
+    .form {
+        row-gap: 1.8em;
+    }
+
     .card {
         width: 50%;
     }
@@ -251,20 +261,20 @@ body {
 
 @media (min-width: 1440px) {
     .card {
-        width: 30%;
+        width: 35%;
     }
 
     .input-text {
-        width: 55%;
+        width: 60%;
     }
 
     .input-file-label {
-        width: 55%;
+        width: 60%;
     }
 }
 
 @media (min-width: 1920px) {
     .card {
-        width: 25%;
+        width: 30%;
     }
 }
