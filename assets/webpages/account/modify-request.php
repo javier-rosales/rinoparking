@@ -1,3 +1,50 @@
+<?php
+require "../../../database.php";
+
+$id = $_GET["id"];
+
+$statement = $connection->prepare("SELECT * FROM user WHERE id = :id");
+$statement->execute([":id" => $id]);
+
+if($statement->rowCount() == 0) {
+    http_response_code(404);
+    echo("HTTP 404 NOT FOUND");
+    return;
+}
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST["email"];
+    $name = $_POST["name"];
+    $lastName = $_POST["last-name"];
+    $secondLastName = $_POST["second-last-name"];
+    $controlNumber = $_POST["control-number"];
+    $password = $_POST["password"];
+    $passwordConfirmation = $_POST["password-confirmation"];
+
+    $error = null;
+
+    if($password == $passwordConfirmation) {
+        $statement = $connection->prepare("UPDATE user SET email = :email, name = :name, last_name = :last_name, second_last_name = :second_last_name, control_number = :control_number, password = :password, status = \"pending\" WHERE id = :id");
+
+        $statement->execute([
+            ":id" => $id,
+            ":email" => $email,
+            ":name" => $name,
+            ":last_name" => $lastName,
+            ":second_last_name" => $secondLastName,
+            ":control_number" => $controlNumber,
+            ":password" => $password
+        ]);
+
+        header("Location: ../../../index.php");
+        return;
+    } else {
+        $error = "Las contraseñas no coinciden";
+    }
+} else {
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -21,28 +68,35 @@
         <main class="main">
             <h2 class="title-2 text--center">Modificar solicitud</h2>
             <div class="card">
-                <form class="form">
+                <?php if($error): ?>
+                    <p class="text text--red">
+                        <?= $error?>
+                    </p>
+                <?php endif ?>
+                <form class="form" method="POST" action="modify-request.php?id=<?= $id ?>">
                     <label for="email" hidden>Correo electrónico</label>
-                    <input class="input-text" type="email" id="email" name="email" maxlength="50" placeholder="Correo electrónico" required value="juanito.alcachofa@gmail.com">
+                    <input class="input-text" type="email" id="email" name="email" maxlength="50" placeholder="Correo electrónico" required value="<?= $user["email"] ?>">
                     <label for="name" hidden>Nombre</label>
-                    <input class="input-text" type="text" id="name" name="name" minlength="3" maxlength="30" placeholder="Nombre(s)" required value="Francisco Javier">
-                    <label for="first-last-name" hidden>Apellido paterno</label>
-                    <input class="input-text" type="text" id="first-last-name" name="first-last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required value="Rosales">
+                    <input class="input-text" type="text" id="name" name="name" minlength="3" maxlength="30" placeholder="Nombre(s)" required value="<?= $user["name"] ?>">
+                    <label for="last-name" hidden>Apellido paterno</label>
+                    <input class="input-text" type="text" id="last-name" name="last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required value="<?= $user["last_name"] ?>">
                     <label for="second-last-name" hidden>Apellido materno</label>
-                    <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno" required value="Benítez">
+                    <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno" value="<?= $user["second_last_name"] ?>">
                     <label for="student-credential" class="input-file-label">Credencial de estudiante (PDF)</label>
-                    <input class="input-file" type="file" id="student-credential" name="student-credential" accept="application/pdf" required>
+                    <input class="input-file" type="file" id="student-credential" name="student-credential" accept="application/pdf">
                     <label for="academic-program" class="input-file-label">Carga académica (PDF)</label>
-                    <input class="input-file" type="file" id="academic-program" name="academic-program" accept="application/pdf" required>
+                    <input class="input-file" type="file" id="academic-program" name="academic-program" accept="application/pdf">
                     <label for="drivers-license" class="input-file-label">Licencia de conducir (PDF)</label>
-                    <input class="input-file" type="file" id="drivers-license" name="drivers-license" accept="application/pdf" required>
+                    <input class="input-file" type="file" id="drivers-license" name="drivers-license" accept="application/pdf">
                     <label for="control-number" hidden>Número de control</label>
-                    <input class="input-text" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" required value="183107081">
+                    <input class="input-text" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" required value="<?= $user["control_number"] ?>">
                     <label for="password" hidden>Contraseña (8-16 caracteres)</label>
-                    <input class="input-text" id="password" name="password" type="password" minlength="8" maxlength="16" placeholder="Contraseña (8-16 caracteres)" required value="rinoparking12345">
-                    <button class="button button--green" type="submit" formaction="../../../index.php">Confirmar</button>
+                    <input class="input-text" id="password" name="password" type="password" minlength="8" maxlength="16" placeholder="Contraseña (8-16 caracteres)" required value="<?= $user["password"] ?>">
+                    <label for="password-confirmation" hidden>Confirmar contraseña</label>
+                    <input class="input-text" id="password-confirmation" name="password-confirmation" type="password" minlength="8" maxlength="16" placeholder="Confirmar contraseña" required>
+                    <button class="button button--green" type="submit">Confirmar</button>
                 </form>
-                <a class="button-link" href="../status/refused.php">Cancelar</a>
+                <a class="button-link" href="../status/refused.php?id=<?= $id ?>">Cancelar</a>
             </div>
         </main>
         <footer class="footer">

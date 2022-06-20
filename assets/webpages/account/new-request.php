@@ -8,19 +8,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $secondLastName = $_POST["second-last-name"];
     $controlNumber = $_POST["control-number"];
     $password = $_POST["password"];
-    
-    $statement = $connection->prepare("INSERT INTO user(email, name, last_name, second_last_name, control_number, password, status) values(:email, :name, :last_name, :second_last_name, :control_number, :password, 'pending')");
+    $passwordConfirmation = $_POST["password-confirmation"];
 
-    $statement->bindParam(":email", $email);
-    $statement->bindParam(":name", $name);
-    $statement->bindParam(":last_name", $lastName);
-    $statement->bindParam(":second_last_name", $secondLastName);
-    $statement->bindParam(":control_number", $controlNumber);
-    $statement->bindParam(":password", $password);
+    $error = null;
 
-    $statement->execute();
-    header("Location: ../../../index.php");
-    return;
+    if($password == $passwordConfirmation) {
+        $statement = $connection->prepare("INSERT INTO user(email, name, last_name, second_last_name, control_number, password, status) values(:email, :name, :last_name, :second_last_name, :control_number, :password, 'pending')");
+
+        $statement->execute([
+            ":email" => $email,
+            ":name" => $name,
+            ":last_name" => $lastName,
+            ":second_last_name" => $secondLastName,
+            ":control_number" => $controlNumber,
+            ":password" => $password,
+        ]);
+        header("Location: ../../../index.php");
+        return;
+    } else {
+        $error = "Las contraseñas no coinciden";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -46,13 +53,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <main class="main">
             <h2 class="title-2 text--center">Nueva solicitud</h2>
             <div class="card">
+                <?php if($error): ?>
+                    <p class="text text--red">
+                        <?= $error?>
+                    </p>
+                <?php endif ?>
                 <form class="form" method="POST" action="new-request.php">
                     <label for="email" hidden>Correo electrónico</label>
                     <input class="input-text" type="email" id="email" name="email" maxlength="50" placeholder="Correo electrónico" required>
                     <label for="name" hidden>Nombre</label>
                     <input class="input-text" type="text" id="name" name="name" minlength="3" maxlength="30" placeholder="Nombre(s)" required>
-                    <label for="first-last-name" hidden>Apellido paterno</label>
-                    <input class="input-text" type="text" id="first-last-name" name="last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required>
+                    <label for="last-name" hidden>Apellido paterno</label>
+                    <input class="input-text" type="text" id="last-name" name="last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required>
                     <label for="second-last-name" hidden>Apellido materno</label>
                     <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno">
                     <label for="student-credential" class="input-file-label">Credencial de estudiante (PDF)</label>
@@ -65,6 +77,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input class="input-text" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" required>
                     <label for="password" hidden>Contraseña (8-16 caracteres)</label>
                     <input class="input-text" id="password" name="password" type="password" minlength="8" maxlength="16" placeholder="Contraseña (8-16 caracteres)" required>
+                    <label for="password-confirmation" hidden>Confirmar contraseña</label>
+                    <input class="input-text" id="password-confirmation" name="password-confirmation" type="password" minlength="8" maxlength="16" placeholder="Confirmar contraseña" required>
                     <button class="button button--green" type="submit">Confirmar</button>
                 </form>
                 <a class="text text--link text--center" href="../../../index.php">¿Ya tienes una cuenta?</a>

@@ -1,3 +1,33 @@
+<?php
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    require "../../../database.php";
+
+    $controlNumber = $_POST["control-number"];
+    $name = $_POST["name"];
+    $lastName = $_POST["last-name"];
+
+    $statement = $connection->prepare("SELECT id FROM user WHERE control_number = :control_number AND name = :name AND last_name = :last_name");
+    $statement->execute([
+        ":control_number" => $controlNumber,
+        ":name" => $name,
+        ":last_name" => $lastName
+    ]);
+
+    $error = null;
+
+    if($statement->rowCount() == 0) {
+        $error = "El usuario no existe";
+    } else {
+        require "../../../url_format.php";
+
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+        $id = $user["id"];
+
+        header("Location: validated.php?id=$id");
+        return;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -21,14 +51,19 @@
         <main class="main">
             <h2 class="title-2 text--center">Recuperar contraseña</h2>
             <div class="card">
-                <form class="form">
+                <?php if($error): ?>
+                    <p class="text text--red">
+                        <?= $error?>
+                    </p>
+                <?php endif ?>
+                <form class="form" method="POST" action="request.php">
                     <label for="control-number" hidden>Número de control</label>
                     <input class="input-text" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" required>
                     <label for="name" hidden>Nombre</label>
                     <input class="input-text" type="text" id="name" name="name" minlength="3" maxlength="30" placeholder="Nombre(s)" required>
-                    <label for="first-last-name" hidden>Apellido paterno</label>
-                    <input class="input-text" type="text" id="first-last-name" name="first-last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required>
-                    <button class="button button--green" type="submit" formaction="validated.php">Confirmar</button>
+                    <label for="last-name" hidden>Apellido paterno</label>
+                    <input class="input-text" type="text" id="last-name" name="last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required>
+                    <button class="button button--green" type="submit">Confirmar</button>
                 </form>
                 <a class="button-link" href="../../../index.php">Cancelar</a>
             </div>

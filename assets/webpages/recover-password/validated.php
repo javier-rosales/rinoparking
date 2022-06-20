@@ -1,3 +1,21 @@
+<?php
+require "../../../database.php";
+
+$id = $_GET["id"];
+
+$statement = $connection->prepare("SELECT password FROM user WHERE id = :id");
+$statement->execute([
+    ":id" => $id
+]);
+
+if($statement->rowCount() == 0) {
+    http_response_code(404);
+    echo("HTTP 404 NOT FOUND");
+    return;
+}
+
+$user = $statement->fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -25,7 +43,7 @@
                     Tu contraseña es:
                 </p>
                 <p class="text text--center">
-                    <strong>rinoparking12345</strong>
+                    <strong><?= $user["password"] ?></strong>
                 </p>
                 <a class="button-link" href="../../../index.php">Regresar</a>
             </div>

@@ -1,3 +1,33 @@
+<?php
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    require "database.php";
+
+    $controlNumber = $_POST["control-number"];
+    $password = $_POST["password"];
+
+    $statement = $connection->prepare("SELECT id, name, status FROM user WHERE control_number = :control_number AND password = :password");
+    $statement->execute([
+        ":control_number" => $controlNumber,
+        ":password" => $password
+    ]);
+
+    $error = null;
+
+    if($statement->rowCount() == 0) {
+        $error = "Usuario y/o contraseña incorrectos";
+    } else {
+        require "url_format.php";
+
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+        $id = $user["id"];
+        $name = url_encode($user["name"]);
+        $status = $user["status"];
+
+        header("Location: assets/webpages/status/$status.php?id=$id&name=$name");
+        return;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -21,12 +51,17 @@
         <main class="main">
             <h2 class="title-2 text--center">Iniciar sesión</h2>
             <div class="card">
-                <form class="form">
+                <?php if($error): ?>
+                    <p class="text text--red">
+                        <?= $error?>
+                    </p>
+                <?php endif ?>
+                <form class="form" method="POST" action="index.php">
                     <label for="control-number" hidden>Número de control</label>
                     <input class="input-text" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" required>
                     <label for="password" hidden>Contraseña</label>
                     <input class="input-text" type="password" id="password" name="password" minlength="8" maxlength="16" placeholder="Contraseña" required>
-                    <button class="button button--green" type="submit" formaction="assets/webpages/status/pending.php">Iniciar sesión</button>
+                    <button class="button button--green" type="submit">Iniciar sesión</button>
                 </form>
                 <a class="text text--link text--center" href="assets/webpages/recover-password/request.php">¿Olvidaste tu contraseña?</a>
                 <a class="button-link" href="assets/webpages/account/new-request.php">Crear nueva solicitud</a>

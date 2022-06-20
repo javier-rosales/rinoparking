@@ -1,3 +1,9 @@
+<?php
+require "../../../url_format.php";
+
+$id = $_GET["id"];
+$name = url_decode($_GET["name"]);
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -20,7 +26,7 @@
         </header>
         <main class="main">
             <div class="card">
-                <h4 class="title-4 text--center">Bienvenido Francisco Javier</h4>
+                <h4 class="title-4 text--center">Bienvenido <?= $name ?></h4>
                 <p class="text text--center">
                     Estado: <strong class="text--red">Rechazado</strong>
                 </p>
@@ -30,7 +36,7 @@
                 <p class="text text--center text--bold">
                     La licencia de conducir carece de calidad de imagen. No se aprecian los datos correctamente.
                 </p>
-                <a class="button-link" href="../account/modify-request.php">Modificar solicitud</a>
+                <a class="button-link" href="../account/modify-request.php?id=<?= $id ?>">Modificar solicitud</a>
                 <a class="button-link button-link--red" href="../../../index.php">Salir</a>
             </div>
         </main>

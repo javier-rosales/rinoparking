@@ -1,3 +1,8 @@
+<?php
+require "../../../url_format.php";
+
+$name = url_decode($_GET["name"]);
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -20,7 +25,7 @@
         </header>
         <main class="main">
             <div class="card">
-                <h4 class="title-4 text--center">Bienvenido Francisco Javier</h4>
+                <h4 class="title-4 text--center">Bienvenido <?= $name ?></h4>
                 <p class="text text--center">
                     Estado: <strong class="text--yellow">Pendiente</strong>
                 </p>
