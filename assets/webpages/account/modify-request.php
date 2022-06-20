@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             ":password" => $password
         ]);
 
-        header("Location: ../../../index.php");
+        header("Location: ../../../index.php?action=modify-request");
         return;
     } else {
         $error = "Las contraseñas no coinciden";

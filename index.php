@@ -26,6 +26,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: assets/webpages/status/$status.php?id=$id&name=$name");
         return;
     }
+} else {
+    $action = $_GET["action"];
 }
 ?>
 <!DOCTYPE html>
@@ -42,6 +44,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="icon" href="assets/images/icons/rinoparking-icon.ico">
         <link rel="stylesheet" href="assets/styles/normalize.css">
         <link rel="stylesheet" href="assets/styles/styles.css">
+        <?php if($action == "new-request"): ?>
+            <script src="assets/scripts/new-request.js" defer></script>
+        <?php elseif($action == "modify-request"): ?>
+            <script src="assets/scripts/modify-request.js" defer></script>
+        <?php endif ?>
     </head>
     <body>
         <header class="header">

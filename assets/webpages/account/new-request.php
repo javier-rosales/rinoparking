@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             ":control_number" => $controlNumber,
             ":password" => $password,
         ]);
-        header("Location: ../../../index.php");
+        header("Location: ../../../index.php?action=new-request");
         return;
     } else {
         $error = "Las contraseñas no coinciden";
