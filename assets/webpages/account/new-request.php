@@ -1,3 +1,28 @@
+<?php
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    require "../../../database.php";
+    
+    $email = $_POST["email"];
+    $name = $_POST["name"];
+    $lastName = $_POST["last-name"];
+    $secondLastName = $_POST["second-last-name"];
+    $controlNumber = $_POST["control-number"];
+    $password = $_POST["password"];
+    
+    $statement = $connection->prepare("INSERT INTO user(email, name, last_name, second_last_name, control_number, password, status) values(:email, :name, :last_name, :second_last_name, :control_number, :password, 'pending')");
+
+    $statement->bindParam(":email", $email);
+    $statement->bindParam(":name", $name);
+    $statement->bindParam(":last_name", $lastName);
+    $statement->bindParam(":second_last_name", $secondLastName);
+    $statement->bindParam(":control_number", $controlNumber);
+    $statement->bindParam(":password", $password);
+
+    $statement->execute();
+    header("Location: ../../../index.php");
+    return;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -21,26 +46,26 @@
         <main class="main">
             <h2 class="title-2 text--center">Nueva solicitud</h2>
             <div class="card">
-                <form class="form">
+                <form class="form" method="POST" action="new-request.php">
                     <label for="email" hidden>Correo electrónico</label>
                     <input class="input-text" type="email" id="email" name="email" maxlength="50" placeholder="Correo electrónico" required>
                     <label for="name" hidden>Nombre</label>
                     <input class="input-text" type="text" id="name" name="name" minlength="3" maxlength="30" placeholder="Nombre(s)" required>
                     <label for="first-last-name" hidden>Apellido paterno</label>
-                    <input class="input-text" type="text" id="first-last-name" name="first-last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required>
+                    <input class="input-text" type="text" id="first-last-name" name="last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required>
                     <label for="second-last-name" hidden>Apellido materno</label>
-                    <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno" required>
+                    <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno">
                     <label for="student-credential" class="input-file-label">Credencial de estudiante (PDF)</label>
-                    <input class="input-file" type="file" id="student-credential" name="student-credential" accept="application/pdf" required>
+                    <input class="input-file" type="file" id="student-credential" name="student-credential" accept="application/pdf">
                     <label for="academic-program" class="input-file-label">Carga académica (PDF)</label>
-                    <input class="input-file" type="file" id="academic-program" name="academic-program" accept="application/pdf" required>
+                    <input class="input-file" type="file" id="academic-program" name="academic-program" accept="application/pdf">
                     <label for="drivers-license" class="input-file-label">Licencia de conducir (PDF)</label>
-                    <input class="input-file" type="file" id="drivers-license" name="drivers-license" accept="application/pdf" required>
+                    <input class="input-file" type="file" id="drivers-license" name="drivers-license" accept="application/pdf">
                     <label for="control-number" hidden>Número de control</label>
                     <input class="input-text" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" required>
                     <label for="password" hidden>Contraseña (8-16 caracteres)</label>
                     <input class="input-text" id="password" name="password" type="password" minlength="8" maxlength="16" placeholder="Contraseña (8-16 caracteres)" required>
-                    <button class="button button--green" type="submit" formaction="../../../index.php">Confirmar</button>
+                    <button class="button button--green" type="submit">Confirmar</button>
                 </form>
                 <a class="text text--link text--center" href="../../../index.php">¿Ya tienes una cuenta?</a>
             </div>
