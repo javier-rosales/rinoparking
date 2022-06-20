@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Sistema de registro y acceso al estacionamiento de Tecnológico de Estudios Superiores de Cuautitlán Izcalli.">
-        <title>Rinoparking | Solicitud pendiente</title>
+        <title>Rinoparking | Recuperar contraseña</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
@@ -19,15 +19,18 @@
             <h1 class="title-1 text--center">Rinoparking</h1>
         </header>
         <main class="main">
+            <h2 class="title-2 text--center">Recuperar contraseña</h2>
             <div class="card">
-                <h4 class="title-4 text--center">Bienvenido Francisco Javier</h4>
-                <p class="text text--center">
-                    Estado: <strong class="text--yellow">Pendiente</strong>
-                </p>
-                <p class="text text--justify">
-                    Hemos recibido tu solicitud. El lapso de atención es de 3 a 5 días hábiles. Recuerda que te contactaremos por correo electrónico una vez tu solicitud haya sido atendida.
-                </p>
-                <a class="button-link button-link--red" href="../../../index.html">Salir</a>
+                <form class="form">
+                    <label for="control-number" hidden>Número de control</label>
+                    <input class="input-text" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" required>
+                    <label for="name" hidden>Nombre</label>
+                    <input class="input-text" type="text" id="name" name="name" minlength="3" maxlength="30" placeholder="Nombre(s)" required>
+                    <label for="first-last-name" hidden>Apellido paterno</label>
+                    <input class="input-text" type="text" id="first-last-name" name="first-last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required>
+                    <button class="button button--green" type="submit" formaction="validated.php">Confirmar</button>
+                </form>
+                <a class="button-link" href="../../../index.php">Cancelar</a>
             </div>
         </main>
         <footer class="footer">

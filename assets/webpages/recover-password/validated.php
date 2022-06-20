@@ -27,7 +27,7 @@
                 <p class="text text--center">
                     <strong>rinoparking12345</strong>
                 </p>
-                <a class="button-link" href="../../../index.html">Regresar</a>
+                <a class="button-link" href="../../../index.php">Regresar</a>
             </div>
         </main>
         <footer class="footer">

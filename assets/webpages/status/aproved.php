@@ -27,7 +27,7 @@
                 <p class="text text--justify">
                     Ya puedes acudir al centro de atención Rinoparking para recoger tu tag de acceso.
                 </p>
-                <a class="button-link button-link--red" href="../../../index.html">Salir</a>
+                <a class="button-link button-link--red" href="../../../index.php">Salir</a>
             </div>
         </main>
         <footer class="footer">

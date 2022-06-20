@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Sistema de registro y acceso al estacionamiento de Tecnológico de Estudios Superiores de Cuautitlán Izcalli.">
-        <title>Rinoparking | Solicitud rechazada</title>
+        <title>Rinoparking | Solicitud pendiente</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
@@ -22,16 +22,12 @@
             <div class="card">
                 <h4 class="title-4 text--center">Bienvenido Francisco Javier</h4>
                 <p class="text text--center">
-                    Estado: <strong class="text--red">Rechazado</strong>
+                    Estado: <strong class="text--yellow">Pendiente</strong>
                 </p>
                 <p class="text text--justify">
-                    Tu solicitud fue rechazada. Por favor, revisa la nota que dejamos a continuación y modifica tu solicitud (Tendrás que subir nuevamente los archivos PDF).
+                    Hemos recibido tu solicitud. El lapso de atención es de 3 a 5 días hábiles. Recuerda que te contactaremos por correo electrónico una vez tu solicitud haya sido atendida.
                 </p>
-                <p class="text text--center text--bold">
-                    La licencia de conducir carece de calidad de imagen. No se aprecian los datos correctamente.
-                </p>
-                <a class="button-link" href="../account/modify-request.html">Modificar solicitud</a>
-                <a class="button-link button-link--red" href="../../../index.html">Salir</a>
+                <a class="button-link button-link--red" href="../../../index.php">Salir</a>
             </div>
         </main>
         <footer class="footer">
