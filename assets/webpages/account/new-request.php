@@ -6,6 +6,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST["name"];
     $lastName = $_POST["last-name"];
     $secondLastName = $_POST["second-last-name"];
+    $studentCredentialName = $_FILES["student-credential"]["name"];
+    $studentCredentialType = $_FILES["student-credential"]["type"];
+    $studentCredentialData = file_get_contents($_FILES["student-credential"]["tmp_name"]);
+    $academicProgramName = $_FILES["academic-program"]["name"];
+    $academicProgramType = $_FILES["academic-program"]["type"];
+    $academicProgramData = file_get_contents($_FILES["academic-program"]["tmp_name"]);
+    $driversLicenseName = $_FILES["drivers-license"]["name"];
+    $driversLicenseType = $_FILES["drivers-license"]["type"];
+    $driversLicenseData = file_get_contents($_FILES["drivers-license"]["tmp_name"]);
     $controlNumber = $_POST["control-number"];
     $password = $_POST["password"];
     $passwordConfirmation = $_POST["password-confirmation"];
@@ -13,15 +22,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $error = null;
 
     if($password == $passwordConfirmation) {
-        $statement = $connection->prepare("INSERT INTO user(email, name, last_name, second_last_name, control_number, password, status) values(:email, :name, :last_name, :second_last_name, :control_number, :password, 'pending')");
+        $statement = $connection->prepare("INSERT INTO user(email, name, last_name, second_last_name, student_credential_name, student_credential_mime, student_credential_data, academic_program_name, academic_program_mime, academic_program_data, drivers_license_name, drivers_license_mime, drivers_license_data, control_number, password, status) values(:email, :name, :last_name, :second_last_name, :student_credential_name, :student_credential_mime, :student_credential_data, :academic_program_name, :academic_program_mime, :academic_program_data, :drivers_license_name, :drivers_license_mime, :drivers_license_data, :control_number, :password, \"pending\")");
 
         $statement->execute([
             ":email" => $email,
             ":name" => $name,
             ":last_name" => $lastName,
             ":second_last_name" => $secondLastName,
+            ":student_credential_name" => $studentCredentialName,
+            ":student_credential_mime" => $studentCredentialType,
+            ":student_credential_data" => $studentCredentialData,
+            ":academic_program_name" => $academicProgramName,
+            ":academic_program_mime" => $academicProgramType,
+            ":academic_program_data" => $academicProgramData,
+            ":drivers_license_name" => $driversLicenseName,
+            ":drivers_license_mime" => $driversLicenseType,
+            ":drivers_license_data" => $driversLicenseData,
             ":control_number" => $controlNumber,
-            ":password" => $password,
+            ":password" => $password
         ]);
         header("Location: ../../../index.php?action=new-request");
         return;
@@ -58,7 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?= $error?>
                     </p>
                 <?php endif ?>
-                <form class="form" method="POST" action="new-request.php">
+                <form class="form" method="POST" action="new-request.php" enctype="multipart/form-data">
                     <label for="email" hidden>Correo electrónico</label>
                     <input class="input-text" type="email" id="email" name="email" maxlength="50" placeholder="Correo electrónico" required>
                     <label for="name" hidden>Nombre</label>
@@ -68,11 +86,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="second-last-name" hidden>Apellido materno</label>
                     <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno">
                     <label for="student-credential" class="input-file-label">Credencial de estudiante (PDF)</label>
-                    <input class="input-file" type="file" id="student-credential" name="student-credential" accept="application/pdf">
+                    <input class="input-file" type="file" id="student-credential" name="student-credential" accept="application/pdf" required>
                     <label for="academic-program" class="input-file-label">Carga académica (PDF)</label>
-                    <input class="input-file" type="file" id="academic-program" name="academic-program" accept="application/pdf">
+                    <input class="input-file" type="file" id="academic-program" name="academic-program" accept="application/pdf" required>
                     <label for="drivers-license" class="input-file-label">Licencia de conducir (PDF)</label>
-                    <input class="input-file" type="file" id="drivers-license" name="drivers-license" accept="application/pdf">
+                    <input class="input-file" type="file" id="drivers-license" name="drivers-license" accept="application/pdf" required>
                     <label for="control-number" hidden>Número de control</label>
                     <input class="input-text" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" required>
                     <label for="password" hidden>Contraseña (8-16 caracteres)</label>

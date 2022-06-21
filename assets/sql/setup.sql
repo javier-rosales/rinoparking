@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS rinoparking;
 CREATE DATABASE rinoparking;
 USE rinoparking;
-CREATE TABLE user(id INT AUTO_INCREMENT PRIMARY KEY, email varchar(50) not null, name varchar(50) not null, last_name varchar(50) not null, second_last_name varchar(50), control_number varchar(20) not null, password varchar(20) not null, status varchar(30) not null);
+CREATE TABLE user(id INT AUTO_INCREMENT PRIMARY KEY, email varchar(50) not null, name varchar(50) not null, last_name varchar(50) not null, second_last_name varchar(50), student_credential_name varchar(100) not null, student_credential_mime varchar(100) not null, student_credential_data mediumblob not null, academic_program_name varchar(100) not null, academic_program_mime varchar(100) not null, academic_program_data mediumblob not null, drivers_license_name varchar(100) not null, drivers_license_mime varchar(100) not null, drivers_license_data mediumblob not null, control_number varchar(20) not null, password varchar(20) not null, status varchar(30) not null);
 CREATE TABLE administrator(id INT AUTO_INCREMENT PRIMARY KEY, control_number varchar(20) not null, password varchar(20) not null);
