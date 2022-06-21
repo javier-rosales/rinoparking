@@ -127,11 +127,20 @@ body {
 
 /* TEXT */
 
+#student-credential-filename, #academic-program-filename, #drivers-license-filename {
+    display: none;
+    margin-bottom: -1.2em;
+}
+
 .text {
     font-size: 1em;
     font-weight: 400;
     color: #fff;
     line-height: 1.5;
+}
+
+.text--no-margin {
+    margin: 0;
 }
 
 .text--justify {

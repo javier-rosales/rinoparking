@@ -62,6 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="icon" href="../../images/icons/rinoparking-icon.ico">
         <link rel="stylesheet" href="../../styles/normalize.css">
         <link rel="stylesheet" href="../../styles/styles.css">
+        <script src="../../scripts/set-filename.js" defer></script>
     </head>
     <body>
         <header class="header">
@@ -85,10 +86,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input class="input-text" type="text" id="last-name" name="last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required>
                     <label for="second-last-name" hidden>Apellido materno</label>
                     <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno">
+                    <p id="student-credential-filename" class="text text--no-margin text--center text--green"></p>
                     <label for="student-credential" class="input-file-label">Credencial de estudiante (PDF)</label>
                     <input class="input-file" type="file" id="student-credential" name="student-credential" accept="application/pdf" required>
+                    <p id="academic-program-filename" class="text text--no-margin text--center text--green"></p>
                     <label for="academic-program" class="input-file-label">Carga académica (PDF)</label>
                     <input class="input-file" type="file" id="academic-program" name="academic-program" accept="application/pdf" required>
+                    <p id="drivers-license-filename" class="text text--no-margin text--center text--green"></p>
                     <label for="drivers-license" class="input-file-label">Licencia de conducir (PDF)</label>
                     <input class="input-file" type="file" id="drivers-license" name="drivers-license" accept="application/pdf" required>
                     <label for="control-number" hidden>Número de control</label>
@@ -97,7 +101,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input class="input-text" id="password" name="password" type="password" minlength="8" maxlength="16" placeholder="Contraseña (8-16 caracteres)" required>
                     <label for="password-confirmation" hidden>Confirmar contraseña</label>
                     <input class="input-text" id="password-confirmation" name="password-confirmation" type="password" minlength="8" maxlength="16" placeholder="Confirmar contraseña" required>
-                    <button class="button button--green" type="submit">Confirmar</button>
+                    <button id="button-submit" class="button button--green" type="submit">Confirmar</button>
                 </form>
                 <a class="text text--link text--center" href="../../../index.php">¿Ya tienes una cuenta?</a>
             </div>
