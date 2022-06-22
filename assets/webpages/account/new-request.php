@@ -81,11 +81,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="email" hidden>Correo electrónico</label>
                     <input class="input-text" type="email" id="email" name="email" maxlength="50" placeholder="Correo electrónico" required>
                     <label for="name" hidden>Nombre</label>
-                    <input class="input-text" type="text" id="name" name="name" minlength="3" maxlength="30" placeholder="Nombre(s)" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" required>
+                    <input class="input-text" type="text" id="name" name="name" minlength="3" maxlength="30" placeholder="Nombre(s)" pattern="[A-Z .]+" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" required>
                     <label for="last-name" hidden>Apellido paterno</label>
-                    <input class="input-text" type="text" id="last-name" name="last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" required>
+                    <input class="input-text" type="text" id="last-name" name="last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" pattern="[A-Z .]+" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" required>
                     <label for="second-last-name" hidden>Apellido materno</label>
-                    <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
+                    <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno" pattern="[A-Z .]+" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);">
                     <p class="text text--center text--green filename"></p>
                     <label for="student-credential" class="input-file-label">Credencial de estudiante (PDF)</label>
                     <input class="input-file" type="file" id="student-credential" name="student-credential" accept="application/pdf" required>
