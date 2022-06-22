@@ -1,6 +1,4 @@
-let studentCredentialFilename = document.getElementById("student-credential-filename");
-let academicProgramFilename = document.getElementById("academic-program-filename");
-let driversLicenseFilename = document.getElementById("drivers-license-filename");
+let filename = document.querySelectorAll(".filename");
 
 let studentCredentialUploadButton = document.getElementById("student-credential");
 let academicProgramUploadButton = document.getElementById("academic-program");
@@ -14,35 +12,35 @@ function css(element, style) {
 studentCredentialUploadButton.onchange = () => {
     let reader = new FileReader();
     reader.readAsDataURL(studentCredentialUploadButton.files[0]);
-    studentCredentialFilename.textContent = studentCredentialUploadButton.files[0].name;
+    filename[0].textContent = studentCredentialUploadButton.files[0].name;
     reader.onload = () => {
-        css(studentCredentialFilename, {
+        css(filename[0], {
             "display": "initial"
         });
-        studentCredentialFilename.textContent = studentCredentialUploadButton.files[0].name;
+        filename[0].textContent = studentCredentialUploadButton.files[0].name;
     }
 }
 
 academicProgramUploadButton.onchange = () => {
     let reader = new FileReader();
     reader.readAsDataURL(academicProgramUploadButton.files[0]);
-    academicProgramFilename.textContent = academicProgramUploadButton.files[0].name;
+    filename[1].textContent = academicProgramUploadButton.files[0].name;
     reader.onload = () => {
-        css(academicProgramFilename, {
+        css(filename[1], {
             "display": "initial"
         });
-        academicProgramFilename.textContent = academicProgramUploadButton.files[0].name;
+        filename[1].textContent = academicProgramUploadButton.files[0].name;
     }
 }
 
 driversLicenseUploadButton.onchange = () => {
     let reader = new FileReader();
     reader.readAsDataURL(driversLicenseUploadButton.files[0]);
-    driversLicenseFilename.textContent = driversLicenseUploadButton.files[0].name;
+    filename[2].textContent = driversLicenseUploadButton.files[0].name;
     reader.onload = () => {
-        css(driversLicenseFilename, {
+        css(filename[2], {
             "display": "initial"
         });
-        driversLicenseFilename.textContent = driversLicenseUploadButton.files[0].name;
+        filename[2].textContent = driversLicenseUploadButton.files[0].name;
     }
 }

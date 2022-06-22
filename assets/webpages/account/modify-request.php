@@ -12,6 +12,8 @@ if($statement->rowCount() == 0) {
     return;
 }
 
+$user = $statement->fetch(PDO::FETCH_ASSOC);
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $name = $_POST["name"];
@@ -59,8 +61,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $error = "Las contraseñas no coinciden";
     }
-} else {
-    $user = $statement->fetch(PDO::FETCH_ASSOC);
 }
 ?>
 <!DOCTYPE html>
@@ -77,6 +77,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="icon" href="../../images/icons/rinoparking-icon.ico">
         <link rel="stylesheet" href="../../styles/normalize.css">
         <link rel="stylesheet" href="../../styles/styles.css">
+        <script src="../../scripts/set-filename.js" defer></script>
     </head>
     <body>
         <header class="header">
@@ -88,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="card">
                 <?php if($error): ?>
                     <p class="text text--red">
-                        <?= $error?>
+                        <?= $error ?>
                     </p>
                 <?php endif ?>
                 <form class="form" method="POST" action="modify-request.php?id=<?= $id ?>" enctype="multipart/form-data">
@@ -100,10 +101,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input class="input-text" type="text" id="last-name" name="last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required value="<?= $user["last_name"] ?>">
                     <label for="second-last-name" hidden>Apellido materno</label>
                     <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno" value="<?= $user["second_last_name"] ?>">
+                    <p class="text text--center text--green filename"></p>
                     <label for="student-credential" class="input-file-label">Credencial de estudiante (PDF)</label>
                     <input class="input-file" type="file" id="student-credential" name="student-credential" accept="application/pdf" required>
+                    <p class="text text--center text--green filename"></p>
                     <label for="academic-program" class="input-file-label">Carga académica (PDF)</label>
                     <input class="input-file" type="file" id="academic-program" name="academic-program" accept="application/pdf" required>
+                    <p class="text text--center text--green filename"></p>
                     <label for="drivers-license" class="input-file-label">Licencia de conducir (PDF)</label>
                     <input class="input-file" type="file" id="drivers-license" name="drivers-license" accept="application/pdf" required>
                     <label for="control-number" hidden>Número de control</label>

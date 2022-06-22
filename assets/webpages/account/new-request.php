@@ -74,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="card">
                 <?php if($error): ?>
                     <p class="text text--red">
-                        <?= $error?>
+                        <?= $error ?>
                     </p>
                 <?php endif ?>
                 <form class="form" method="POST" action="new-request.php" enctype="multipart/form-data">
@@ -86,13 +86,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input class="input-text" type="text" id="last-name" name="last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" required>
                     <label for="second-last-name" hidden>Apellido materno</label>
                     <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno">
-                    <p id="student-credential-filename" class="text text--no-margin text--center text--green"></p>
+                    <p class="text text--center text--green filename"></p>
                     <label for="student-credential" class="input-file-label">Credencial de estudiante (PDF)</label>
                     <input class="input-file" type="file" id="student-credential" name="student-credential" accept="application/pdf" required>
-                    <p id="academic-program-filename" class="text text--no-margin text--center text--green"></p>
+                    <p class="text text--center text--green filename"></p>
                     <label for="academic-program" class="input-file-label">Carga académica (PDF)</label>
                     <input class="input-file" type="file" id="academic-program" name="academic-program" accept="application/pdf" required>
-                    <p id="drivers-license-filename" class="text text--no-margin text--center text--green"></p>
+                    <p class="text text--center text--green filename"></p>
                     <label for="drivers-license" class="input-file-label">Licencia de conducir (PDF)</label>
                     <input class="input-file" type="file" id="drivers-license" name="drivers-license" accept="application/pdf" required>
                     <label for="control-number" hidden>Número de control</label>
