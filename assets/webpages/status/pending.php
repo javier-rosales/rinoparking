@@ -25,7 +25,7 @@ $name = url_decode($_GET["name"]);
         </header>
         <main class="main">
             <div class="card">
-                <h4 class="title-4 text--center">Bienvenido <?= $name ?></h4>
+                <h4 class="title-4 text--center">BIENVENIDO <?= $name ?></h4>
                 <p class="text text--center">
                     Estado: <strong class="text--yellow">Pendiente</strong>
                 </p>

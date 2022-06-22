@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php endif ?>
                 <form class="form" method="POST" action="index.php">
                     <label for="control-number" hidden>Número de control</label>
-                    <input class="input-text" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" required>
+                    <input class="input-text" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" required>
                     <label for="password" hidden>Contraseña</label>
                     <input class="input-text" type="password" id="password" name="password" minlength="8" maxlength="16" placeholder="Contraseña" required>
                     <button class="button button--green" type="submit">Iniciar sesión</button>
