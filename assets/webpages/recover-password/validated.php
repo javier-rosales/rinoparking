@@ -50,6 +50,9 @@ $user = $statement->fetch(PDO::FETCH_ASSOC);
         </main>
         <footer class="footer">
             <h3 class="title-3 text--center">Ayuda</h3>
+            <p class="text  text--center">
+                ¿No estás seguro de cómo funciona Rinoparking? Accede a nuestra <a class="text--link" href="../../documents/pdf/quick-start-guide-rinoparking.pdf" target="_blank">guía rápida de inicio</a>.
+            </p>
             <p class="text text--center">
                 ¿Tienes dudas o requieres atención especializada? Comunícate con nosotros.
             </p>

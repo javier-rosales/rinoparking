@@ -16,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if($statement->rowCount() == 0) {
         $error = "Usuario y/o contraseña incorrectos";
     } else {
-        require "url_format.php";
+        require "assets/scripts/php/url_format.php";
 
         $user = $statement->fetch(PDO::FETCH_ASSOC);
         $id = $user["id"];
@@ -76,6 +76,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         </main>
         <footer class="footer">
             <h3 class="title-3 text--center">Ayuda</h3>
+            <p class="text  text--center">
+                ¿No estás seguro de cómo funciona Rinoparking? Accede a nuestra <a class="text--link" href="assets/documents/pdf/quick-start-guide-rinoparking.pdf" target="_blank">guía rápida de inicio</a>.
+            </p>
             <p class="text text--center">
                 ¿Tienes dudas o requieres atención especializada? Comunícate con nosotros.
             </p>
