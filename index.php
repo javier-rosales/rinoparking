@@ -1,6 +1,6 @@
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    require "database.php";
+    require "assets/scripts/php/database.php";
 
     $controlNumber = $_POST["control-number"];
     $password = $_POST["password"];
@@ -45,9 +45,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="assets/styles/normalize.css">
         <link rel="stylesheet" href="assets/styles/styles.css">
         <?php if($action == "new-request"): ?>
-            <script src="assets/scripts/new-request.js" defer></script>
+            <script src="assets/scripts/javascript/new-request.js" defer></script>
         <?php elseif($action == "modify-request"): ?>
-            <script src="assets/scripts/modify-request.js" defer></script>
+            <script src="assets/scripts/javascript/modify-request.js" defer></script>
         <?php endif ?>
     </head>
     <body>

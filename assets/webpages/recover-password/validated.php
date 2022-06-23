@@ -1,5 +1,5 @@
 <?php
-require "../../../database.php";
+require "../../scripts/php/database.php";
 
 $id = $_GET["id"];
 

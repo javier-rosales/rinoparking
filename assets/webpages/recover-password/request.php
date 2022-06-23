@@ -1,6 +1,6 @@
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    require "../../../database.php";
+    require "../../scripts/php/database.php";
 
     $controlNumber = $_POST["control-number"];
     $name = $_POST["name"];

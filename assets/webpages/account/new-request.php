@@ -1,6 +1,6 @@
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    require "../../../database.php";
+    require "../../scripts/php/database.php";
     
     $email = $_POST["email"];
     $name = $_POST["name"];
@@ -62,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="icon" href="../../images/icons/rinoparking-icon.ico">
         <link rel="stylesheet" href="../../styles/normalize.css">
         <link rel="stylesheet" href="../../styles/styles.css">
-        <script src="../../scripts/set-filename.js" defer></script>
+        <script src="../../scripts/javascript/set-filename.js" defer></script>
     </head>
     <body>
         <header class="header">

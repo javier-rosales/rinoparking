@@ -1,5 +1,5 @@
 <?php
-require "../../../url_format.php";
+require "../../scripts/php/url_format.php";
 
 $name = url_decode($_GET["name"]);
 ?>
