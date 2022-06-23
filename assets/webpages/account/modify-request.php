@@ -101,13 +101,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input class="input-text" type="text" id="last-name" name="last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" pattern="[A-Z .]+" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" value="<?= $user["last_name"] ?>" required>
                     <label for="second-last-name" hidden>Apellido materno</label>
                     <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno" pattern="[A-Z .]+" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" value="<?= $user["second_last_name"] ?>">
-                    <p class="text text--center text--darker-green filename"></p>
+                    <p class="text text--center text--green-theme filename"></p>
                     <label for="student-credential" class="input-file-label">Credencial de estudiante (PDF)</label>
                     <input class="input-file" type="file" id="student-credential" name="student-credential" accept="application/pdf" required>
-                    <p class="text text--center text--darker-green filename"></p>
+                    <p class="text text--center text--green-theme filename"></p>
                     <label for="academic-program" class="input-file-label">Carga académica (PDF)</label>
                     <input class="input-file" type="file" id="academic-program" name="academic-program" accept="application/pdf" required>
-                    <p class="text text--center text--darker-green filename"></p>
+                    <p class="text text--center text--green-theme filename"></p>
                     <label for="drivers-license" class="input-file-label">Licencia de conducir (PDF)</label>
                     <input class="input-file" type="file" id="drivers-license" name="drivers-license" accept="application/pdf" required>
                     <label for="control-number" hidden>Número de control</label>
