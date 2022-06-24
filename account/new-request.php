@@ -42,7 +42,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             ":password" => $password
         ]);
 ?>
-<script src="../assets/scripts/javascript/new-request.js" defer></script>
+<script src="../assets/scripts/javascript/new-request.js" async></script>
 <?php
     } else {
         $error = "Las contraseñas no coinciden";
