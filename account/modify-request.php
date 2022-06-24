@@ -56,7 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             ":password" => $password
         ]);
 ?>
-<script src="../assets/scripts/javascript/modify-request.js" async></script>
+<script src="../assets/scripts/javascript/modify-request.js"></script>
 <?php
     } else {
         $error = "Las contraseñas no coinciden";
@@ -78,6 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="stylesheet" href="../assets/styles/normalize.css">
         <link rel="stylesheet" href="../assets/styles/styles.css">
         <script src="../assets/scripts/javascript/set-filename.js" defer></script>
+        <script src="../assets/scripts/javascript/confirmation.js" async></script>
     </head>
     <body>
         <header class="header">
@@ -92,7 +93,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?= $error ?>
                     </p>
                 <?php endif ?>
-                <form class="form" method="POST" action="modify-request.php?id=<?= $id ?>" enctype="multipart/form-data">
+                <form class="form" method="POST" action="modify-request.php?id=<?= $id ?>" enctype="multipart/form-data" onsubmit="return confirmUpdateRequest()">
                     <label for="email" hidden>Correo electrónico</label>
                     <input class="input-text" type="email" id="email" name="email" maxlength="50" placeholder="Correo electrónico" required value="<?= $user["email"] ?>">
                     <label for="name" hidden>Nombre</label>
