@@ -23,11 +23,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = url_encode($user["name"]);
         $status = $user["status"];
 
-        header("Location: assets/webpages/status/$status.php?id=$id&name=$name");
+        header("Location: status/$status.php?id=$id&name=$name");
         return;
     }
-} else {
-    $action = $_GET["action"];
 }
 ?>
 <!DOCTYPE html>
@@ -44,11 +42,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="icon" href="assets/images/icons/rinoparking-icon.ico">
         <link rel="stylesheet" href="assets/styles/normalize.css">
         <link rel="stylesheet" href="assets/styles/styles.css">
-        <?php if($action == "new-request"): ?>
-            <script src="assets/scripts/javascript/new-request.js" defer></script>
-        <?php elseif($action == "modify-request"): ?>
-            <script src="assets/scripts/javascript/modify-request.js" defer></script>
-        <?php endif ?>
     </head>
     <body>
         <header class="header">
@@ -70,8 +63,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input class="input-text" type="password" id="password" name="password" minlength="8" maxlength="16" placeholder="Contraseña" required>
                     <button class="button button--green" type="submit">Iniciar sesión</button>
                 </form>
-                <a class="text text--link text--center" href="assets/webpages/recover-password/request.php">¿Olvidaste tu contraseña?</a>
-                <a class="button-link" href="assets/webpages/account/new-request.php">Crear nueva solicitud</a>
+                <a class="text text--link text--center" href="recover-password/request.php">¿Olvidaste tu contraseña?</a>
+                <a class="button-link" href="account/new-request.php">Crear nueva solicitud</a>
             </div>
         </main>
         <footer class="footer">

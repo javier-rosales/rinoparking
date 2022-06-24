@@ -1,5 +1,5 @@
 <?php
-require "../../scripts/php/database.php";
+require "../assets/scripts/php/database.php";
 
 $id = $_GET["id"];
 
@@ -55,9 +55,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             ":control_number" => $controlNumber,
             ":password" => $password
         ]);
-
-        header("Location: ../../../index.php?action=modify-request");
-        return;
+?>
+<script src="../assets/scripts/javascript/modify-request.js" defer></script>
+<?php
     } else {
         $error = "Las contraseñas no coinciden";
     }
@@ -74,14 +74,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-        <link rel="icon" href="../../images/icons/rinoparking-icon.ico">
-        <link rel="stylesheet" href="../../styles/normalize.css">
-        <link rel="stylesheet" href="../../styles/styles.css">
-        <script src="../../scripts/javascript/set-filename.js" defer></script>
+        <link rel="icon" href="../assets/images/icons/rinoparking-icon.ico">
+        <link rel="stylesheet" href="../assets/styles/normalize.css">
+        <link rel="stylesheet" href="../assets/styles/styles.css">
+        <script src="../assets/scripts/javascript/set-filename.js" defer></script>
     </head>
     <body>
         <header class="header">
-            <img class="rinoparking-logo" src="../../images/rinoparking-logo-450h.png" alt="">
+            <img class="rinoparking-logo" src="../assets/images/rinoparking-logo-450h.png" alt="">
             <h1 class="title-1 text--center">Rinoparking</h1>
         </header>
         <main class="main">
@@ -124,7 +124,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <footer class="footer">
             <h3 class="title-3 text--center">Ayuda</h3>
             <p class="text  text--center">
-                ¿No estás seguro de cómo funciona Rinoparking? Accede a nuestra <a class="text--link" href="../../documents/pdf/quick-start-guide-rinoparking.pdf" target="_blank">guía rápida de inicio</a>.
+                ¿No estás seguro de cómo funciona Rinoparking? Accede a nuestra <a class="text--link" href="../assets/documents/pdf/quick-start-guide-rinoparking.pdf" target="_blank">guía rápida de inicio</a>.
             </p>
             <p class="text text--center">
                 ¿Tienes dudas o requieres atención especializada? Comunícate con nosotros.
