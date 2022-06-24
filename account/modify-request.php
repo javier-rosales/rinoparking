@@ -3,7 +3,7 @@ require "../assets/scripts/php/database.php";
 
 $id = $_GET["id"];
 
-$statement = $connection->prepare("SELECT * FROM user WHERE id = :id");
+$statement = $connection->prepare("SELECT * FROM user WHERE id = :id LIMIT 1");
 $statement->execute([":id" => $id]);
 
 if($statement->rowCount() == 0) {
