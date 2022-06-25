@@ -5,6 +5,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $controlNumber = $_POST["control-number"];
     $name = $_POST["name"];
     $lastName = $_POST["last-name"];
+    
+    $controlNumber = trim($controlNumber);
+    $name = trim($name);
+    $lastName = trim($lastName);
 
     $statement = $connection->prepare("SELECT id FROM request WHERE control_number = :control_number AND name = :name AND last_name = :last_name");
     $statement->execute([

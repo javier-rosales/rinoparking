@@ -5,6 +5,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $controlNumber = $_POST["control-number"];
     $password = $_POST["password"];
 
+    $controlNumber = trim($controlNumber);
+
     $statement = $connection->prepare("SELECT id, name, status FROM request WHERE control_number = :control_number AND password = :password");
     $statement->execute([
         ":control_number" => $controlNumber,

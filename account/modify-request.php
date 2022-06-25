@@ -32,6 +32,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $passwordConfirmation = $_POST["password-confirmation"];
 
+    $email = trim($email);
+    $name = trim($name);
+    $lastName = trim($lastName);
+    $secondLastName = trim($secondLastName);
+    $controlNumber = trim($controlNumber);
+
     $error = null;
 
     if($password == $passwordConfirmation) {
