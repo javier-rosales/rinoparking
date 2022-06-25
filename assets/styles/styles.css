@@ -240,6 +240,7 @@ body {
 
     .title-1 {
         flex-basis: auto;
+        margin: 0;
     }
 
     .input-text {
