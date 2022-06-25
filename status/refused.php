@@ -13,6 +13,8 @@ if($statement->rowCount() == 0) {
     echo("HTTP 404 NOT FOUND");
     return;
 }
+
+$request = $statement->fetch(PDO::ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -43,7 +45,7 @@ if($statement->rowCount() == 0) {
                 <p class="text text--justify">
                     Tu solicitud fue rechazada. Por favor, revisa la nota que dejamos a continuación y modifica tu solicitud (Tendrás que subir nuevamente los archivos PDF).
                 </p>
-                <p class="text text--center text--bold"><?= $statement["notes"] ?></p>
+                <p class="text text--center text--bold"><?= $request["notes"] ?></p>
                 <a class="button-link" href="../account/modify-request.php?id=<?= $id ?>">Modificar solicitud</a>
                 <a class="button-link button-link--red" href="../index.php">Salir</a>
             </div>
