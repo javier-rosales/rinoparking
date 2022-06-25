@@ -3,7 +3,7 @@ require "../assets/scripts/php/database.php";
 
 $id = $_GET["id"];
 
-$statement = $connection->prepare("SELECT * FROM user WHERE id = :id LIMIT 1");
+$statement = $connection->prepare("SELECT * FROM request WHERE id = :id LIMIT 1");
 $statement->execute([":id" => $id]);
 
 if($statement->rowCount() == 0) {
@@ -12,7 +12,7 @@ if($statement->rowCount() == 0) {
     return;
 }
 
-$user = $statement->fetch(PDO::FETCH_ASSOC);
+$request = $statement->fetch(PDO::FETCH_ASSOC);
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $error = null;
 
     if($password == $passwordConfirmation) {
-        $statement = $connection->prepare("UPDATE user SET email = :email, name = :name, last_name = :last_name, second_last_name = :second_last_name, student_credential_name = :student_credential_name, student_credential_mime = :student_credential_mime, student_credential_data = :student_credential_data, academic_program_name = :academic_program_name, academic_program_mime = :academic_program_mime, academic_program_data = :academic_program_data, drivers_license_name = :drivers_license_name, drivers_license_mime = :drivers_license_mime, drivers_license_data = :drivers_license_data, control_number = :control_number, password = :password, status = \"pending\" WHERE id = :id");
+        $statement = $connection->prepare("UPDATE request SET email = :email, name = :name, last_name = :last_name, second_last_name = :second_last_name, student_credential_name = :student_credential_name, student_credential_mime = :student_credential_mime, student_credential_data = :student_credential_data, academic_program_name = :academic_program_name, academic_program_mime = :academic_program_mime, academic_program_data = :academic_program_data, drivers_license_name = :drivers_license_name, drivers_license_mime = :drivers_license_mime, drivers_license_data = :drivers_license_data, control_number = :control_number, password = :password, status = \"pending\" WHERE id = :id");
 
         $statement->execute([
             ":id" => $id,
@@ -95,13 +95,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php endif ?>
                 <form class="form" method="POST" action="modify-request.php?id=<?= $id ?>" enctype="multipart/form-data" onsubmit="return confirmUpdateRequest()">
                     <label for="email" hidden>Correo electrónico</label>
-                    <input class="input-text" type="email" id="email" name="email" maxlength="50" placeholder="Correo electrónico" required value="<?= $user["email"] ?>">
+                    <input class="input-text" type="email" id="email" name="email" maxlength="50" placeholder="Correo electrónico" required value="<?= $request["email"] ?>">
                     <label for="name" hidden>Nombre</label>
-                    <input class="input-text" type="text" id="name" name="name" minlength="3" maxlength="30" placeholder="Nombre(s)" pattern="[A-Z .]+" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" value="<?= $user["name"] ?>" required>
+                    <input class="input-text" type="text" id="name" name="name" minlength="3" maxlength="30" placeholder="Nombre(s)" pattern="[A-Z .]+" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" value="<?= $request["name"] ?>" required>
                     <label for="last-name" hidden>Apellido paterno</label>
-                    <input class="input-text" type="text" id="last-name" name="last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" pattern="[A-Z .]+" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" value="<?= $user["last_name"] ?>" required>
+                    <input class="input-text" type="text" id="last-name" name="last-name" minlength="3" maxlength="30" placeholder="Apellido paterno" pattern="[A-Z .]+" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" value="<?= $request["last_name"] ?>" required>
                     <label for="second-last-name" hidden>Apellido materno</label>
-                    <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno" pattern="[A-Z .]+" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" value="<?= $user["second_last_name"] ?>">
+                    <input class="input-text" type="text" id="second-last-name" name="second-last-name" minlength="3" maxlength="30" placeholder="Apellido materno" pattern="[A-Z .]+" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" value="<?= $request["second_last_name"] ?>">
                     <p class="text text--center text--green-theme filename"></p>
                     <label for="student-credential" class="input-file-label">Credencial de estudiante (PDF)</label>
                     <input class="input-file" type="file" id="student-credential" name="student-credential" accept="application/pdf" required>
@@ -112,9 +112,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="drivers-license" class="input-file-label">Licencia de conducir (PDF)</label>
                     <input class="input-file" type="file" id="drivers-license" name="drivers-license" accept="application/pdf" required>
                     <label for="control-number" hidden>Número de control</label>
-                    <input class="input-text" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" value="<?= $user["control_number"] ?>" required>
+                    <input class="input-text" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" value="<?= $request["control_number"] ?>" required>
                     <label for="password" hidden>Contraseña (8-16 caracteres)</label>
-                    <input class="input-text" id="password" name="password" type="password" minlength="8" maxlength="16" placeholder="Contraseña (8-16 caracteres)" value="<?= $user["password"] ?>" required>
+                    <input class="input-text" id="password" name="password" type="password" minlength="8" maxlength="16" placeholder="Contraseña (8-16 caracteres)" value="<?= $request["password"] ?>" required>
                     <label for="password-confirmation" hidden>Confirmar contraseña</label>
                     <input class="input-text" id="password-confirmation" name="password-confirmation" type="password" minlength="8" maxlength="16" placeholder="Confirmar contraseña" required>
                     <button class="button button--green" type="submit">Confirmar</button>

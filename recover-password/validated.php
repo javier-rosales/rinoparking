@@ -3,7 +3,7 @@ require "../assets/scripts/php/database.php";
 
 $id = $_GET["id"];
 
-$statement = $connection->prepare("SELECT password FROM user WHERE id = :id");
+$statement = $connection->prepare("SELECT password FROM request WHERE id = :id");
 $statement->execute([
     ":id" => $id
 ]);
@@ -14,7 +14,7 @@ if($statement->rowCount() == 0) {
     return;
 }
 
-$user = $statement->fetch(PDO::FETCH_ASSOC);
+$request = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -43,7 +43,7 @@ $user = $statement->fetch(PDO::FETCH_ASSOC);
                     Tu contraseña es:
                 </p>
                 <p class="text text--center">
-                    <strong><?= $user["password"] ?></strong>
+                    <strong><?= $request["password"] ?></strong>
                 </p>
                 <a class="button-link" href="../index.php">Regresar</a>
             </div>

@@ -6,7 +6,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST["name"];
     $lastName = $_POST["last-name"];
 
-    $statement = $connection->prepare("SELECT id FROM user WHERE control_number = :control_number AND name = :name AND last_name = :last_name");
+    $statement = $connection->prepare("SELECT id FROM request WHERE control_number = :control_number AND name = :name AND last_name = :last_name");
     $statement->execute([
         ":control_number" => $controlNumber,
         ":name" => $name,
@@ -20,8 +20,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         require "../assets/scripts/php/url_format.php";
 
-        $user = $statement->fetch(PDO::FETCH_ASSOC);
-        $id = $user["id"];
+        $request = $statement->fetch(PDO::FETCH_ASSOC);
+        $id = $request["id"];
 
         header("Location: validated.php?id=$id");
         return;

@@ -5,7 +5,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $controlNumber = $_POST["control-number"];
     $password = $_POST["password"];
 
-    $statement = $connection->prepare("SELECT id, name, status FROM user WHERE control_number = :control_number AND password = :password");
+    $statement = $connection->prepare("SELECT id, name, status FROM request WHERE control_number = :control_number AND password = :password");
     $statement->execute([
         ":control_number" => $controlNumber,
         ":password" => $password
@@ -18,10 +18,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         require "assets/scripts/php/url_format.php";
 
-        $user = $statement->fetch(PDO::FETCH_ASSOC);
-        $id = $user["id"];
-        $name = url_encode($user["name"]);
-        $status = $user["status"];
+        $request = $statement->fetch(PDO::FETCH_ASSOC);
+        $id = $request["id"];
+        $name = url_encode($request["name"]);
+        $status = $request["status"];
 
         header("Location: status/$status.php?id=$id&name=$name");
         return;
@@ -58,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php endif ?>
                 <form class="form" method="POST" action="index.php">
                     <label for="control-number" hidden>Número de control</label>
-                    <input class="input-text" type="text" id="control-number" name="control-number" minlength="" maxlength="9" placeholder="Número de control" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" required>
+                    <input class="input-text" type="text" id="control-number" name="control-number" minlength="4" maxlength="9" placeholder="Número de control" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" required>
                     <label for="password" hidden>Contraseña</label>
                     <input class="input-text" type="password" id="password" name="password" minlength="8" maxlength="16" placeholder="Contraseña" required>
                     <button class="button button--green" type="submit">Iniciar sesión</button>
