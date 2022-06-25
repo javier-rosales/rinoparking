@@ -1,4 +1,5 @@
 <?php
+require "../assets/scripts/php/database.php";
 require "../assets/scripts/php/url_format.php";
 
 $id = $_GET["id"];
