@@ -3,6 +3,15 @@ require "../assets/scripts/php/url_format.php";
 
 $id = $_GET["id"];
 $name = url_decode($_GET["name"]);
+
+$statement = $connection->prepare("SELECT notes FROM request WHERE id = :id LIMIT 1");
+$statement->execute([":id" => $id]);
+
+if($statement->rowCount() == 0) {
+    http_response_code(404);
+    echo("HTTP 404 NOT FOUND");
+    return;
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -33,9 +42,7 @@ $name = url_decode($_GET["name"]);
                 <p class="text text--justify">
                     Tu solicitud fue rechazada. Por favor, revisa la nota que dejamos a continuación y modifica tu solicitud (Tendrás que subir nuevamente los archivos PDF).
                 </p>
-                <p class="text text--center text--bold">
-                    La licencia de conducir carece de calidad de imagen. No se aprecian los datos correctamente.
-                </p>
+                <p class="text text--center text--bold"><?= $statement["notes"] ?></p>
                 <a class="button-link" href="../account/modify-request.php?id=<?= $id ?>">Modificar solicitud</a>
                 <a class="button-link button-link--red" href="../index.php">Salir</a>
             </div>

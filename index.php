@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $error = null;
 
     if($statement->rowCount() == 0) {
-        $error = "Usuario y/o contraseña incorrectos";
+        $error = "Número de control y/o contraseña incorrectos";
     } else {
         require "assets/scripts/php/url_format.php";
 
@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             <h2 class="title-2 text--center">Iniciar sesión</h2>
             <div class="card">
                 <?php if($error): ?>
-                    <p class="text text--red">
+                    <p class="text text--center text--red">
                         <?= $error?>
                     </p>
                 <?php endif ?>

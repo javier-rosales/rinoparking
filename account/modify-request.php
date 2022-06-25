@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $error = null;
 
     if($password == $passwordConfirmation) {
-        $statement = $connection->prepare("UPDATE request SET email = :email, name = :name, last_name = :last_name, second_last_name = :second_last_name, student_credential_name = :student_credential_name, student_credential_mime = :student_credential_mime, student_credential_data = :student_credential_data, academic_program_name = :academic_program_name, academic_program_mime = :academic_program_mime, academic_program_data = :academic_program_data, drivers_license_name = :drivers_license_name, drivers_license_mime = :drivers_license_mime, drivers_license_data = :drivers_license_data, control_number = :control_number, password = :password, status = \"pending\" WHERE id = :id");
+        $statement = $connection->prepare("UPDATE request SET email = :email, name = :name, last_name = :last_name, second_last_name = :second_last_name, student_credential_name = :student_credential_name, student_credential_mime = :student_credential_mime, student_credential_data = :student_credential_data, academic_program_name = :academic_program_name, academic_program_mime = :academic_program_mime, academic_program_data = :academic_program_data, drivers_license_name = :drivers_license_name, drivers_license_mime = :drivers_license_mime, drivers_license_data = :drivers_license_data, control_number = :control_number, password = :password, status = \"pending\", notes = null WHERE id = :id");
 
         $statement->execute([
             ":id" => $id,
