@@ -14,7 +14,7 @@ if($statement->rowCount() == 0) {
     return;
 }
 
-$request = $statement->fetch(PDO::ASSOC);
+$request = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="es">
