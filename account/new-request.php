@@ -2,7 +2,6 @@
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     require "../assets/scripts/php/database.php";
     
-    $email = $_POST["email"];
     $name = $_POST["name"];
     $lastName = $_POST["last-name"];
     $secondLastName = $_POST["second-last-name"];
@@ -19,7 +18,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $passwordConfirmation = $_POST["password-confirmation"];
 
-    $email = trim($email);
     $name = trim($name);
     $lastName = trim($lastName);
     $secondLastName = trim($secondLastName);
@@ -28,10 +26,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $error = null;
 
     if($password == $passwordConfirmation) {
-        $statement = $connection->prepare("INSERT INTO request(email, name, last_name, second_last_name, student_credential_name, student_credential_mime, student_credential_data, academic_program_name, academic_program_mime, academic_program_data, drivers_license_name, drivers_license_mime, drivers_license_data, control_number, password, status) values(:email, :name, :last_name, :second_last_name, :student_credential_name, :student_credential_mime, :student_credential_data, :academic_program_name, :academic_program_mime, :academic_program_data, :drivers_license_name, :drivers_license_mime, :drivers_license_data, :control_number, :password, \"pending\")");
+        $statement = $connection->prepare("INSERT INTO request(name, last_name, second_last_name, student_credential_name, student_credential_mime, student_credential_data, academic_program_name, academic_program_mime, academic_program_data, drivers_license_name, drivers_license_mime, drivers_license_data, control_number, password, status) values(:name, :last_name, :second_last_name, :student_credential_name, :student_credential_mime, :student_credential_data, :academic_program_name, :academic_program_mime, :academic_program_data, :drivers_license_name, :drivers_license_mime, :drivers_license_data, :control_number, :password, \"pending\")");
 
         $statement->execute([
-            ":email" => $email,
             ":name" => $name,
             ":last_name" => $lastName,
             ":second_last_name" => $secondLastName,
@@ -86,8 +83,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     </p>
                 <?php endif ?>
                 <form class="form" method="POST" action="new-request.php" enctype="multipart/form-data" onsubmit="return confirmNewRequest()">
-                    <label for="email" hidden>Correo electrónico</label>
-                    <input class="input-text" type="email" id="email" name="email" maxlength="50" placeholder="Correo electrónico" required>
                     <label for="name" hidden>Nombre</label>
                     <input class="input-text" type="text" id="name" name="name" minlength="3" maxlength="30" placeholder="Nombre(s)" pattern="[A-Z .]+" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" required>
                     <label for="last-name" hidden>Apellido paterno</label>

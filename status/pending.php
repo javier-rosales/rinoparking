@@ -30,7 +30,7 @@ $name = url_decode($_GET["name"]);
                     Estado: <strong class="text--yellow">Pendiente</strong>
                 </p>
                 <p class="text text--justify">
-                    Hemos recibido tu solicitud. El lapso de atención es de 3 a 5 días hábiles. Recuerda que te contactaremos por correo electrónico una vez tu solicitud haya sido atendida.
+                    Hemos recibido tu solicitud. El lapso de atención es de 3 a 5 días hábiles.
                 </p>
                 <a class="button-link button-link--red" href="../index.php">Salir</a>
             </div>

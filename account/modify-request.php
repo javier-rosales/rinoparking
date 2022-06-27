@@ -15,7 +15,6 @@ if($statement->rowCount() == 0) {
 $request = $statement->fetch(PDO::FETCH_ASSOC);
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
     $name = $_POST["name"];
     $lastName = $_POST["last-name"];
     $secondLastName = $_POST["second-last-name"];
@@ -32,7 +31,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $passwordConfirmation = $_POST["password-confirmation"];
 
-    $email = trim($email);
     $name = trim($name);
     $lastName = trim($lastName);
     $secondLastName = trim($secondLastName);
@@ -41,11 +39,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $error = null;
 
     if($password == $passwordConfirmation) {
-        $statement = $connection->prepare("UPDATE request SET email = :email, name = :name, last_name = :last_name, second_last_name = :second_last_name, student_credential_name = :student_credential_name, student_credential_mime = :student_credential_mime, student_credential_data = :student_credential_data, academic_program_name = :academic_program_name, academic_program_mime = :academic_program_mime, academic_program_data = :academic_program_data, drivers_license_name = :drivers_license_name, drivers_license_mime = :drivers_license_mime, drivers_license_data = :drivers_license_data, control_number = :control_number, password = :password, status = \"pending\", notes = null WHERE id = :id");
+        $statement = $connection->prepare("UPDATE request SET name = :name, last_name = :last_name, second_last_name = :second_last_name, student_credential_name = :student_credential_name, student_credential_mime = :student_credential_mime, student_credential_data = :student_credential_data, academic_program_name = :academic_program_name, academic_program_mime = :academic_program_mime, academic_program_data = :academic_program_data, drivers_license_name = :drivers_license_name, drivers_license_mime = :drivers_license_mime, drivers_license_data = :drivers_license_data, control_number = :control_number, password = :password, status = \"pending\", notes = null WHERE id = :id");
 
         $statement->execute([
             ":id" => $id,
-            ":email" => $email,
             ":name" => $name,
             ":last_name" => $lastName,
             ":second_last_name" => $secondLastName,
@@ -100,8 +97,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     </p>
                 <?php endif ?>
                 <form class="form" method="POST" action="modify-request.php?id=<?= $id ?>" enctype="multipart/form-data" onsubmit="return confirmUpdateRequest()">
-                    <label for="email" hidden>Correo electrónico</label>
-                    <input class="input-text" type="email" id="email" name="email" maxlength="50" placeholder="Correo electrónico" required value="<?= $request["email"] ?>">
                     <label for="name" hidden>Nombre</label>
                     <input class="input-text" type="text" id="name" name="name" minlength="3" maxlength="30" placeholder="Nombre(s)" pattern="[A-Z .]+" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" value="<?= $request["name"] ?>" required>
                     <label for="last-name" hidden>Apellido paterno</label>
