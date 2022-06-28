@@ -25,28 +25,35 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $error = null;
 
-    if($password == $passwordConfirmation) {
-        $statement = $connection->prepare("INSERT INTO request(name, last_name, second_last_name, student_credential_name, student_credential_mime, student_credential_data, academic_program_name, academic_program_mime, academic_program_data, drivers_license_name, drivers_license_mime, drivers_license_data, control_number, password, status) values(:name, :last_name, :second_last_name, :student_credential_name, :student_credential_mime, :student_credential_data, :academic_program_name, :academic_program_mime, :academic_program_data, :drivers_license_name, :drivers_license_mime, :drivers_license_data, :control_number, :password, \"pending\")");
+    $request = $connection->prepare("SELECT control_number FROM request WHERE control_number = :control_number");
+    $request->execute([":control_number" => $controlNumber]);
 
-        $statement->execute([
-            ":name" => $name,
-            ":last_name" => $lastName,
-            ":second_last_name" => $secondLastName,
-            ":student_credential_name" => $studentCredentialName,
-            ":student_credential_mime" => $studentCredentialType,
-            ":student_credential_data" => $studentCredentialData,
-            ":academic_program_name" => $academicProgramName,
-            ":academic_program_mime" => $academicProgramType,
-            ":academic_program_data" => $academicProgramData,
-            ":drivers_license_name" => $driversLicenseName,
-            ":drivers_license_mime" => $driversLicenseType,
-            ":drivers_license_data" => $driversLicenseData,
-            ":control_number" => $controlNumber,
-            ":password" => $password
-        ]);
-?>
-<script src="../assets/scripts/javascript/new-request.js"></script>
-<?php
+    if($password == $passwordConfirmation) {
+        if($request->rowCount() == 0) {
+            $statement = $connection->prepare("INSERT INTO request(name, last_name, second_last_name, student_credential_name, student_credential_mime, student_credential_data, academic_program_name, academic_program_mime, academic_program_data, drivers_license_name, drivers_license_mime, drivers_license_data, control_number, password, status) values(:name, :last_name, :second_last_name, :student_credential_name, :student_credential_mime, :student_credential_data, :academic_program_name, :academic_program_mime, :academic_program_data, :drivers_license_name, :drivers_license_mime, :drivers_license_data, :control_number, :password, \"pending\")");
+        
+            $statement->execute([
+                ":name" => $name,
+                ":last_name" => $lastName,
+                ":second_last_name" => $secondLastName,
+                ":student_credential_name" => $studentCredentialName,
+                ":student_credential_mime" => $studentCredentialType,
+                ":student_credential_data" => $studentCredentialData,
+                ":academic_program_name" => $academicProgramName,
+                ":academic_program_mime" => $academicProgramType,
+                ":academic_program_data" => $academicProgramData,
+                ":drivers_license_name" => $driversLicenseName,
+                ":drivers_license_mime" => $driversLicenseType,
+                ":drivers_license_data" => $driversLicenseData,
+                ":control_number" => $controlNumber,
+                ":password" => $password
+            ]);
+        ?>
+        <script src="../assets/scripts/javascript/new-request.js"></script>
+        <?php
+        } else {
+            $error = "Este número de control ya está registrado";
+        }
     } else {
         $error = "Las contraseñas no coinciden";
     }
